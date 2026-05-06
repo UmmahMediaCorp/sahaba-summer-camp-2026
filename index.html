@@ -232,7 +232,8 @@
     margin: 0;
     font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
   }
-  .hero-title .word { display: inline-block; overflow: hidden; line-height: 1; padding-bottom: 0.18em; vertical-align: top; }
+  .hero-title .word { display: inline-block; overflow: hidden; line-height: 1; padding-bottom: 0.32em; vertical-align: top; transition: overflow 0s 1.6s; }
+  .hero-title.revealed .word { overflow: visible; }
   .hero-title .word > span { display: inline-block; transform: translateY(110%); will-change: transform; }
   .hero-title em {
     font-style: italic; font-weight: 400; color: var(--gold);
@@ -1218,9 +1219,10 @@ function bootSahaba() {
 
   /* ─── MAIN REVEAL FLOW ─── */
   function revealAll() {
-    // Hero word reveal
+    // Hero word reveal — remove the clip-overflow once slide-in is done so descenders ('p' in Camp) show
     gsap.to('.hero-title [data-anim]', {
-      y: 0, duration: 1.4, stagger: 0.1, ease: 'expo.out', delay: 0.2
+      y: 0, duration: 1.4, stagger: 0.1, ease: 'expo.out', delay: 0.2,
+      onComplete: () => document.querySelector('.hero-title')?.classList.add('revealed')
     });
     gsap.utils.toArray('.hero .reveal').forEach((el, i) => {
       gsap.fromTo(el,
