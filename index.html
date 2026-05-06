@@ -28,6 +28,7 @@
   /*  TOKENS                                                                  */
   /* ────────────────────────────────────────────────────────────────────── */
   :root {
+    --nav-height: 68px;
     --night: #0a0d14;
     --night-2: #11151f;
     --night-3: #1a2030;
@@ -52,7 +53,8 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; scroll-padding-top: var(--nav-height); }
+  @media (max-width: 700px) { :root { --nav-height: 60px; } }
   body {
     margin: 0;
     font-family: var(--font-body);
@@ -126,16 +128,22 @@
   /* ────────────────────────────────────────────────────────────────────── */
   .nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 18px clamp(20px, 4vw, 40px);
+    height: var(--nav-height);
+    padding: 0 clamp(20px, 4vw, 40px);
     display: flex; align-items: center; justify-content: space-between;
-    transition: all 0.4s var(--ease-quart);
+    transition: background 0.4s var(--ease-quart), backdrop-filter 0.4s var(--ease-quart);
     mix-blend-mode: difference;
   }
   .nav.scrolled {
-    backdrop-filter: blur(18px) saturate(120%);
-    background: rgba(10, 13, 20, 0.6);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    background: rgba(10, 13, 20, 0.85);
     mix-blend-mode: normal;
     border-bottom: 1px solid var(--line);
+  }
+  /* On mobile / smaller screens, force solid nav after scroll so chapter art never bleeds through */
+  @media (max-width: 700px) {
+    .nav.scrolled { background: rgba(10, 13, 20, 0.95); }
   }
   .nav-brand {
     display: flex; align-items: center; gap: 10px;
@@ -342,8 +350,9 @@
   }
   .chapter-stage {
     position: sticky;
-    top: 0;
-    height: 100vh; height: 100svh;
+    top: var(--nav-height);
+    height: calc(100vh - var(--nav-height));
+    height: calc(100svh - var(--nav-height));
     width: 100%;
     overflow: hidden;
   }
@@ -378,8 +387,11 @@
     display: grid;
     grid-template-columns: 1fr;
     align-items: end;
-    padding: 100px clamp(24px, 5vw, 80px) 60px;
+    padding: 40px clamp(24px, 5vw, 80px) 50px;
     color: var(--cream);
+  }
+  @media (max-width: 700px) {
+    .chapter-content { padding: 24px 20px 40px; }
   }
   .chapter-tag {
     display: inline-flex; align-items: center; gap: 12px;
@@ -1204,7 +1216,11 @@ function bootSahaba() {
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', (e) => {
         const target = document.querySelector(link.getAttribute('href'));
-        if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -20, duration: 1.5 }); }
+        if (target) {
+          e.preventDefault();
+          const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 68;
+          lenis.scrollTo(target, { offset: -(navH + 8), duration: 1.5 });
+        }
       });
     });
   }
