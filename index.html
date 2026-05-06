@@ -1291,7 +1291,7 @@ function bootSahaba() {
         scale: 1.04, ease: 'none',
         scrollTrigger: { trigger: ch, start: 'top top', end: 'bottom bottom', scrub: true }
       });
-      // content fades in then out
+      // content fades in once and stays visible (no fade-out on scroll past)
       gsap.fromTo(content,
         { opacity: 0, y: 60 },
         {
@@ -1299,10 +1299,6 @@ function bootSahaba() {
           scrollTrigger: { trigger: ch, start: 'top 80%', end: 'top 30%', scrub: 0.6 }
         }
       );
-      gsap.to(content, {
-        opacity: 0, y: -40,
-        scrollTrigger: { trigger: ch, start: 'bottom 70%', end: 'bottom top', scrub: 0.6 }
-      });
 
       // chapter counter update
       ScrollTrigger.create({
