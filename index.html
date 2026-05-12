@@ -211,10 +211,20 @@
   }
   .hero-content {
     position: relative; z-index: 5;
-    height: 100vh; height: 100svh;
+    min-height: 100vh; min-height: 100svh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    padding: 110px clamp(20px, 4vw, 56px) 40px;
+    padding: calc(var(--nav-height) + 24px) clamp(20px, 4vw, 56px) clamp(28px, 4vh, 56px);
+    gap: clamp(16px, 3vh, 36px);
+  }
+  @media (max-height: 800px) {
+    .hero-content { padding-top: calc(var(--nav-height) + 4px); padding-bottom: 14px; gap: 4px; }
+    .hero-subtitle { margin-top: 10px; font-size: clamp(13px, 1.4vw, 16px); max-width: 440px; line-height: 1.35; }
+    .hero-arabic { margin-top: 2px; font-size: clamp(14px, 1.6vw, 18px); }
+    .hero-title .ord { margin-bottom: 8px; font-size: 11px; }
+    .hero-stat .num { font-size: clamp(36px, 4.5vw, 56px); }
+    .hero-stat .lbl { font-size: 9px; }
+    .btn { padding: 12px 20px; font-size: 12px; }
   }
   .hero-meta {
     display: flex; flex-wrap: wrap; gap: 24px;
@@ -226,20 +236,26 @@
   .hero-meta em { color: var(--gold); font-style: italic; }
   .hero-title { align-self: end; color: var(--cream); }
   .hero-title .ord {
-    display: inline-flex; align-items: baseline; gap: 14px;
+    display: inline-flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
     font-family: var(--font-sans); font-size: 13px; letter-spacing: 0.3em;
-    color: var(--gold); text-transform: uppercase; margin-bottom: 24px;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 22px;
   }
   .hero-title .ord b { color: var(--cream); font-weight: 600; }
+  @media (max-width: 700px) {
+    .hero-title .ord { font-size: 11px; letter-spacing: 0.22em; gap: 10px; margin-bottom: 14px; }
+    .hero-title .ord .long { display: none; }
+  }
   .hero-title h1 {
     font-family: var(--font-serif);
     font-weight: 800;
-    font-size: clamp(64px, 13vw, 220px);
-    line-height: 0.85;
-    letter-spacing: -0.05em;
+    font-size: clamp(56px, 12vw, 200px);
+    line-height: 0.88;
+    letter-spacing: -0.045em;
     margin: 0;
     font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
   }
+  @media (max-height: 800px) { .hero-title h1 { font-size: clamp(48px, 9vw, 120px); line-height: 0.9; } }
+  @media (max-width: 700px) { .hero-title h1 { font-size: clamp(52px, 16vw, 96px); } }
   .hero-title .word { display: inline-block; overflow: hidden; line-height: 1; padding-bottom: 0.32em; vertical-align: top; transition: overflow 0s 1.6s; }
   .hero-title.revealed .word { overflow: visible; }
   .hero-title .word > span { display: inline-block; transform: translateY(110%); will-change: transform; }
@@ -254,10 +270,10 @@
   }
   .hero-subtitle {
     font-family: var(--font-serif); font-style: italic;
-    font-size: clamp(18px, 2.2vw, 26px);
-    color: var(--cream); opacity: 0.85;
-    max-width: 560px;
-    margin-top: 24px;
+    font-size: clamp(17px, 1.9vw, 24px);
+    color: var(--cream); opacity: 0.88;
+    max-width: 520px;
+    margin-top: 22px;
     line-height: 1.4;
   }
   .hero-arabic {
@@ -273,12 +289,14 @@
     justify-content: space-between; align-items: end;
   }
   .scroll-cue {
-    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
-    color: var(--cream); opacity: 0.7;
+    position: absolute; bottom: 28px; right: clamp(20px, 4vw, 56px);
+    color: var(--cream); opacity: 0.55;
     display: flex; flex-direction: column; align-items: center; gap: 10px;
     font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
     pointer-events: none; z-index: 6;
   }
+  /* Hide scroll cue on small screens and short viewports where it competes with content */
+  @media (max-width: 900px), (max-height: 760px) { .scroll-cue { display: none; } }
   .scroll-cue .line { width: 1px; height: 56px; background: linear-gradient(to bottom, var(--cream), transparent); position: relative; overflow: hidden; }
   .scroll-cue .line::after {
     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 30%;
@@ -458,7 +476,7 @@
   /* ────────────────────────────────────────────────────────────────────── */
   .day-schedule {
     background: linear-gradient(180deg, var(--night) 0%, var(--night-2) 100%);
-    padding: 120px clamp(24px, 5vw, 80px) 100px;
+    padding: clamp(70px, 10vw, 120px) clamp(20px, 5vw, 80px) clamp(64px, 9vw, 100px);
     position: relative; overflow: hidden;
   }
   .day-schedule::before {
@@ -556,7 +574,7 @@
   /* ────────────────────────────────────────────────────────────────────── */
   .themes {
     background: var(--night-2);
-    padding: 120px clamp(24px, 5vw, 80px) 110px;
+    padding: clamp(70px, 10vw, 120px) clamp(20px, 5vw, 80px) clamp(70px, 9vw, 110px);
     position: relative; overflow: hidden;
   }
   .themes-head {
@@ -658,7 +676,7 @@
   /* ────────────────────────────────────────────────────────────────────── */
   .ages {
     background: var(--night);
-    padding: 120px clamp(24px, 5vw, 80px) 110px;
+    padding: clamp(70px, 10vw, 120px) clamp(20px, 5vw, 80px) clamp(70px, 9vw, 110px);
     position: relative; overflow: hidden;
   }
   .ages-head {
@@ -739,7 +757,7 @@
     padding: 0;
   }
   .loc-intro {
-    padding: 140px clamp(24px, 5vw, 80px) 60px;
+    padding: clamp(60px, 10vw, 140px) clamp(24px, 5vw, 80px) clamp(40px, 6vw, 60px);
     display: grid; gap: 32px; grid-template-columns: 1fr;
     align-items: end;
   }
@@ -758,9 +776,10 @@
   /* ── Scattered/pinboard layout ────────────────────────────────────── */
   .loc-board {
     position: relative;
-    padding: 60px clamp(24px, 5vw, 80px) 140px;
+    padding: clamp(40px, 6vw, 60px) clamp(24px, 5vw, 80px) clamp(60px, 10vw, 140px);
     min-height: 1100px;
   }
+  @media (max-width: 899px) { .loc-board { min-height: auto; } }
   .loc-board::before {
     content: ''; position: absolute; inset: 0; pointer-events: none;
     background-image:
@@ -777,6 +796,7 @@
     margin: 0 auto;
     min-height: 920px;
   }
+  @media (max-width: 899px) { .loc-board-inner { min-height: auto; height: auto !important; } }
 
   .loc-card {
     position: relative;
@@ -902,7 +922,7 @@
   /*  PRICING                                                                */
   /* ────────────────────────────────────────────────────────────────────── */
   .pricing {
-    padding: 120px clamp(24px, 5vw, 80px) 100px;
+    padding: clamp(70px, 10vw, 120px) clamp(20px, 5vw, 80px) clamp(64px, 9vw, 100px);
     background: var(--night-2);
     position: relative; overflow: hidden;
   }
@@ -1088,7 +1108,7 @@
     </div>
 
     <div class="hero-title">
-      <div class="ord reveal"><span><b>04</b> / 26</span><span style="opacity:.5">— The 4th Annual Summer Camp</span></div>
+      <div class="ord reveal"><span><b>04</b> / 26</span><span class="long" style="opacity:.5">— The 4th Annual Summer Camp</span></div>
       <h1 aria-label="Summer Camp 2026">
         <span class="word"><span data-anim>Summer</span></span>
         <span class="word"><span data-anim><em>Camp</em></span></span>
