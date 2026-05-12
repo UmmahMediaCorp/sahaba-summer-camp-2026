@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#0a0d14" />
 <title>Sahaba Summer Camp 2026 — A Summer of Purpose. Memories That Last.</title>
-<meta name="description" content="The 4th Annual Sahaba Summer Camp. Three Edmonton locations. July 6 – August 21, 2026. 10 AM – 2 PM, 4 days a week. Qur'an, Islamic Studies, sports, themed weeks & creative workshops. Ages 4–15. Family pricing from $150." />
+<meta name="description" content="The 4th Annual Sahaba Summer Camp. Three Edmonton locations. July 6 – August 21, 2026. 10 AM – 2 PM, 4 days a week. Qur'an, Islamic Studies, sports, themed weeks & creative workshops. Ages 7–15. From $150/month — $100/month for each additional sibling." />
 
 <meta property="og:title" content="Sahaba Summer Camp 2026" />
 <meta property="og:description" content="A summer of purpose. Memories that last. Three locations. Seven weeks. One unforgettable journey." />
@@ -683,6 +683,7 @@
     grid-template-columns: 1fr;
   }
   @media (min-width: 900px) { .age-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 900px) { .age-grid.age-grid-2 { grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1200px; } }
 
   .age-card {
     padding: 36px 32px;
@@ -927,6 +928,7 @@
     grid-template-columns: 1fr;
   }
   @media (min-width: 800px) { .price-row { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 800px) { .price-row.price-row-2 { grid-template-columns: repeat(2, 1fr); max-width: 1100px; } }
 
   .price-card {
     border: 1px solid var(--line);
@@ -944,6 +946,11 @@
     font-family: var(--font-serif); font-weight: 800;
     font-size: clamp(80px, 9vw, 140px); line-height: 0.9; letter-spacing: -0.05em;
     font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+  }
+  .price-card .price .per {
+    font-family: var(--font-sans); font-size: clamp(16px, 1.4vw, 20px);
+    opacity: 0.55; margin-left: 6px; letter-spacing: 0.04em; align-self: end;
+    margin-bottom: 0.4em;
   }
   .price-card.featured { background: linear-gradient(180deg, rgba(245,185,66,0.08), rgba(247,239,220,0)); border-color: rgba(245,185,66,0.35); }
   .price-card.featured .price .num { color: var(--gold); }
@@ -1122,7 +1129,7 @@
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
     <span><em>4</em> days a week</span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
-    <span>Ages <em>4</em>—<em>15</em></span>
+    <span>Ages <em>7</em>—<em>15</em></span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
     <span><em>3</em> Edmonton mosques</span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
@@ -1135,7 +1142,7 @@
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
     <span><em>4</em> days a week</span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
-    <span>Ages <em>4</em>—<em>15</em></span>
+    <span>Ages <em>7</em>—<em>15</em></span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
     <span><em>3</em> Edmonton mosques</span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
@@ -1473,45 +1480,30 @@
   <div class="ages-head">
     <div class="reveal">
       <p class="eyebrow" style="margin-bottom:18px">Built for every age</p>
-      <h2>One camp. <em>Three age groups.</em></h2>
+      <h2>One camp. <em>Two age tracks.</em></h2>
     </div>
-    <p class="reveal">Every age gets their own version of the program — same values, same routine, age-appropriate everything. Halaqas, sports, and creative workshops are designed for where each child is right now.</p>
+    <p class="reveal">Two age groups, each with their own version of the program — same values, same daily rhythm, age-appropriate everything. Halaqas, sports, and creative workshops designed for where each child is right now.</p>
   </div>
 
-  <div class="age-grid">
+  <div class="age-grid age-grid-2">
     <div class="age-card reveal">
-      <div class="age-tag">Group 01 · Littles</div>
-      <h3><em>4</em>—<em>6</em></h3>
-      <p class="age-sub">Where the deen becomes their first language.</p>
-      <ul>
-        <li>Hula hoop & bubbles</li>
-        <li>Arts and crafts</li>
-        <li>Beading necklaces and bracelets</li>
-        <li>Short Qur'an sessions with songs</li>
-        <li>Story circle (Prophets & Sahaba for kids)</li>
-        <li>Wudu & prayer guided practice</li>
-      </ul>
-      <div class="age-foot">Pending confirmation · Inquire</div>
-    </div>
-
-    <div class="age-card featured reveal">
-      <div class="age-tag">Group 02 · Middles</div>
+      <div class="age-tag">Group 01 · Younger campers</div>
       <h3><em>7</em>—<em>10</em></h3>
       <p class="age-sub">The age of friendship and big games.</p>
       <ul>
-        <li>Soccer</li>
-        <li>Relay races</li>
-        <li>Sack races</li>
+        <li>Soccer, relay races, sack races</li>
         <li>Water balloon games (hot days)</li>
-        <li>Dodgeball</li>
+        <li>Dodgeball and outdoor team sports</li>
         <li>Qur'an memorization tracks</li>
         <li>Stories of the Prophets — full curriculum</li>
+        <li>Arts and crafts</li>
+        <li>Weekly field trips</li>
       </ul>
-      <div class="age-foot">Confirmed · The heart of the camp</div>
+      <div class="age-foot">The heart of the camp</div>
     </div>
 
-    <div class="age-card reveal">
-      <div class="age-tag">Group 03 · Olders</div>
+    <div class="age-card featured reveal">
+      <div class="age-tag">Group 02 · Older campers</div>
       <h3><em>11</em>—<em>15</em></h3>
       <p class="age-sub">Where the program goes thematic.</p>
       <ul>
@@ -1519,10 +1511,10 @@
         <li>Tajweed deep-dives & hifdh tracks</li>
         <li>Seerah & adab halaqas</li>
         <li>Public speaking & halaqa-leading practice</li>
-        <li>Creative workshops (calligraphy, photography, engineering)</li>
+        <li>Creative workshops (calligraphy, photography, simple experiments)</li>
         <li>Field trips tied to each week's theme</li>
       </ul>
-      <div class="age-foot">Confirmed · The themed track</div>
+      <div class="age-foot">The themed track</div>
     </div>
   </div>
 </section>
@@ -1548,7 +1540,7 @@
         <div class="poster-wrap"><picture><source srcset="assets/posters/poster-syc.webp" type="image/webp"><img src="assets/posters/poster-syc.jpg" alt="Sahaba Youth Centre Summer Camp poster" loading="lazy" decoding="async" /></picture></div>
         <div class="meta">
           <h3>Sahaba <em>Youth</em> Centre</h3>
-          <p class="addr">Indoor court · library · lounge · ages 4–15</p>
+          <p class="addr">Indoor court · library · lounge · ages 7–15</p>
         </div>
       </article>
 
@@ -1557,7 +1549,7 @@
         <div class="poster-wrap"><picture><source srcset="assets/posters/poster-downtown.webp" type="image/webp"><img src="assets/posters/poster-downtown.jpg" alt="Downtown Sahaba Mosque Summer Camp poster" loading="lazy" decoding="async" /></picture></div>
         <div class="meta">
           <h3>Downtown <em>Sahaba</em> Mosque</h3>
-          <p class="addr">9216 — 105 Avenue, Edmonton · ages 4–15</p>
+          <p class="addr">9216 — 105 Avenue, Edmonton · ages 7–15</p>
         </div>
       </article>
 
@@ -1566,7 +1558,7 @@
         <div class="poster-wrap"><picture><source srcset="assets/posters/poster-alfaruq.webp" type="image/webp"><img src="assets/posters/poster-alfaruq.jpg" alt="Al-Faruq Islamic Centre Summer Camp poster" loading="lazy" decoding="async" /></picture></div>
         <div class="meta">
           <h3>Al-Faruq <em>Islamic</em> Centre</h3>
-          <p class="addr">4410 127 Street SW, Edmonton · ages 4–15</p>
+          <p class="addr">4410 127 Street SW, Edmonton · ages 7–15</p>
         </div>
       </article>
 
@@ -1578,29 +1570,23 @@
 <section class="pricing" id="pricing">
   <div class="pricing-head">
     <div class="reveal">
-      <p class="eyebrow" style="margin-bottom:18px">Family-first pricing</p>
-      <h2>Same camp. <em>Bigger family,</em> smaller bill.</h2>
+      <p class="eyebrow" style="margin-bottom:18px">Monthly pricing · family-friendly</p>
+      <h2>One child. <em>Or the whole family.</em></h2>
     </div>
-    <p class="reveal" style="font-family: var(--font-serif); font-style: italic; font-size: 18px; opacity: 0.75; max-width: 380px; margin: 0;">We designed pricing to make it easier — not harder — to send all your kids together. Every additional sibling costs less.</p>
+    <p class="reveal" style="font-family: var(--font-serif); font-style: italic; font-size: 18px; opacity: 0.75; max-width: 380px; margin: 0;">Pay by the month. Every additional sibling is even more affordable — because cost should never separate kids from a summer at Sahaba.</p>
   </div>
 
-  <div class="price-row">
+  <div class="price-row price-row-2">
     <div class="price-card reveal">
       <div class="label">First child</div>
-      <div class="price"><span class="currency">$</span><span class="num"><span data-count="300">0</span></span></div>
-      <p class="desc">Full 7-week program. Daily lunch, materials, weekly field trips, Sahaba camp t-shirt — all included.</p>
+      <div class="price"><span class="currency">$</span><span class="num"><span data-count="150">0</span></span><span class="per">/mo</span></div>
+      <p class="desc">Full program at any of our three Edmonton locations. Qur'an, Islamic Studies, sports, themed weeks, creative workshops, weekly field trips — all included.</p>
     </div>
     <div class="price-card featured reveal">
-      <span class="save">Save $100</span>
-      <div class="label">Second child</div>
-      <div class="price"><span class="currency">$</span><span class="num"><span data-count="200">0</span></span></div>
-      <p class="desc">Bring a sibling and they're $200 — same full program, deeper discount because we believe in the family halaqa.</p>
-    </div>
-    <div class="price-card reveal">
-      <span class="save">Save $150</span>
-      <div class="label">Each additional</div>
-      <div class="price"><span class="currency">$</span><span class="num"><span data-count="150">0</span></span></div>
-      <p class="desc">Three, four, five kids? Each one beyond the second is $150. We'll never let cost separate siblings from a Sahaba summer.</p>
+      <span class="save">Save $50 / mo</span>
+      <div class="label">Each additional sibling</div>
+      <div class="price"><span class="currency">$</span><span class="num"><span data-count="100">0</span></span><span class="per">/mo</span></div>
+      <p class="desc">Bring as many siblings as you want — every brother and sister beyond the first is just $100/month. Same full program, family-first price.</p>
     </div>
   </div>
 </section>
