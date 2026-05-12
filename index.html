@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#0a0d14" />
 <title>Sahaba Summer Camp 2026 — A Summer of Purpose. Memories That Last.</title>
-<meta name="description" content="The 4th Annual Sahaba Summer Camp. Three Edmonton locations. July 6 – August 21, 2026. Quran, Islamic Studies, sports & field trips. Family pricing from $150." />
+<meta name="description" content="The 4th Annual Sahaba Summer Camp. Three Edmonton locations. July 6 – August 21, 2026. 10 AM – 2 PM, 4 days a week. Qur'an, Islamic Studies, sports, themed weeks & creative workshops. Ages 4–15. Family pricing from $150." />
 
 <meta property="og:title" content="Sahaba Summer Camp 2026" />
 <meta property="og:description" content="A summer of purpose. Memories that last. Three locations. Seven weeks. One unforgettable journey." />
@@ -454,6 +454,283 @@
   }
 
   /* ────────────────────────────────────────────────────────────────────── */
+  /*  A DAY AT THE CAMP — daily schedule timeline                            */
+  /* ────────────────────────────────────────────────────────────────────── */
+  .day-schedule {
+    background: linear-gradient(180deg, var(--night) 0%, var(--night-2) 100%);
+    padding: 120px clamp(24px, 5vw, 80px) 100px;
+    position: relative; overflow: hidden;
+  }
+  .day-schedule::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><g fill='none' stroke='%23f5b942' stroke-width='0.4' opacity='0.3'><polygon points='60,12 96,30 96,72 60,90 24,72 24,30'/></g></svg>");
+    background-size: 220px 220px; opacity: 0.08;
+  }
+  .day-head {
+    display: grid; gap: 28px; grid-template-columns: 1fr; margin-bottom: 60px; align-items: end; position: relative;
+  }
+  @media (min-width: 1000px) { .day-head { grid-template-columns: 1.3fr 1fr; } }
+  .day-head h2 {
+    font-family: var(--font-serif); font-weight: 800;
+    font-size: clamp(48px, 9vw, 130px); line-height: 0.88;
+    letter-spacing: -0.05em; color: var(--cream); margin: 0;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+  }
+  .day-head h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .day-head p {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: clamp(17px, 1.7vw, 22px); opacity: 0.78; max-width: 460px; margin: 0;
+    line-height: 1.5; color: var(--cream);
+  }
+  .day-meta {
+    display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px;
+  }
+  .day-meta .chip {
+    padding: 7px 14px; border-radius: 999px;
+    background: rgba(245,185,66,0.10);
+    border: 1px solid rgba(245,185,66,0.30);
+    color: var(--gold);
+    font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; font-weight: 600;
+  }
+
+  .timeline {
+    position: relative;
+    counter-reset: tl;
+  }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: clamp(24px, 5vw, 80px); top: 12px; bottom: 12px;
+    width: 1px; background: linear-gradient(180deg, transparent 0%, rgba(245,185,66,0.4) 10%, rgba(245,185,66,0.4) 90%, transparent 100%);
+  }
+  .tl-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 22px 0 22px calc(clamp(24px, 5vw, 80px) + 36px);
+    border-top: 1px solid var(--line);
+    transition: background 0.35s var(--ease-quart);
+  }
+  .tl-row:first-child { border-top: none; }
+  .tl-row::before {
+    counter-increment: tl;
+    content: counter(tl, decimal-leading-zero);
+    position: absolute;
+    left: clamp(24px, 5vw, 80px); top: 26px;
+    transform: translateX(-50%);
+    width: 32px; height: 32px;
+    background: var(--night-2);
+    border: 1px solid rgba(245,185,66,0.5);
+    border-radius: 999px;
+    display: grid; place-items: center;
+    color: var(--gold);
+    font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: all 0.4s var(--ease-quart);
+  }
+  .tl-row:hover { background: linear-gradient(90deg, rgba(245,185,66,0.04), transparent 60%); }
+  .tl-row:hover::before { background: var(--gold); color: var(--night); transform: translateX(-50%) scale(1.1); }
+
+  @media (min-width: 900px) {
+    .tl-row { grid-template-columns: 180px 1fr 1.4fr; gap: 32px; }
+  }
+  .tl-time {
+    font-family: var(--font-sans); font-weight: 600; font-size: 15px;
+    color: var(--gold); letter-spacing: 0.04em;
+  }
+  .tl-title {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: clamp(20px, 2.1vw, 28px); line-height: 1.05; letter-spacing: -0.02em;
+    color: var(--cream); margin: 0;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+  }
+  .tl-title em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .tl-desc {
+    font-family: var(--font-body); font-size: 14px; line-height: 1.5;
+    opacity: 0.72; color: var(--cream); margin: 0; max-width: 440px;
+  }
+
+  /* ────────────────────────────────────────────────────────────────────── */
+  /*  WEEKLY THEMES — 7 themed weeks for older kids                          */
+  /* ────────────────────────────────────────────────────────────────────── */
+  .themes {
+    background: var(--night-2);
+    padding: 120px clamp(24px, 5vw, 80px) 110px;
+    position: relative; overflow: hidden;
+  }
+  .themes-head {
+    display: grid; gap: 28px; grid-template-columns: 1fr; margin-bottom: 60px; align-items: end;
+  }
+  @media (min-width: 1000px) { .themes-head { grid-template-columns: 1.4fr 1fr; } }
+  .themes-head h2 {
+    font-family: var(--font-serif); font-weight: 800;
+    font-size: clamp(48px, 9vw, 130px); line-height: 0.85;
+    letter-spacing: -0.05em; color: var(--cream); margin: 0;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+  }
+  .themes-head h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .themes-head p {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: clamp(17px, 1.7vw, 22px); opacity: 0.78; max-width: 460px; margin: 0;
+    line-height: 1.5; color: var(--cream);
+  }
+
+  .themes-grid {
+    display: grid; gap: 16px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 700px) { .themes-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .themes-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .theme-card {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: 18px;
+    overflow: hidden;
+    padding: 28px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    background: linear-gradient(160deg, var(--night) 0%, var(--night-3) 100%);
+    border: 1px solid var(--line);
+    transition: all 0.5s var(--ease-quart);
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .theme-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 100% 0%, var(--theme-glow, rgba(245,185,66,0.25)) 0%, transparent 50%);
+    opacity: 0.7;
+    pointer-events: none;
+    transition: opacity 0.5s var(--ease-quart);
+  }
+  .theme-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(245,185,66,0.4);
+  }
+  .theme-card:hover::before { opacity: 1; }
+
+  .theme-num {
+    font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.3em;
+    color: var(--gold); text-transform: uppercase; font-weight: 600;
+    position: relative; z-index: 2;
+  }
+  .theme-icon {
+    width: 56px; height: 56px;
+    border-radius: 999px;
+    background: rgba(245,185,66,0.12);
+    border: 1px solid rgba(245,185,66,0.3);
+    display: grid; place-items: center;
+    color: var(--gold);
+    margin-top: 14px;
+    position: relative; z-index: 2;
+  }
+  .theme-name {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: clamp(22px, 2.2vw, 30px); line-height: 1.05; letter-spacing: -0.025em;
+    color: var(--cream); margin: 0 0 8px;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+    position: relative; z-index: 2;
+  }
+  .theme-name em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .theme-desc {
+    font-family: var(--font-body); font-size: 13px; line-height: 1.5;
+    color: var(--cream); opacity: 0.7; margin: 0;
+    position: relative; z-index: 2;
+  }
+
+  .theme-card.t1 { --theme-glow: rgba(245,185,66,0.30); }   /* Heroes — gold */
+  .theme-card.t2 { --theme-glow: rgba(244,114,182,0.22); }  /* Kindness — pink */
+  .theme-card.t3 { --theme-glow: rgba(74,139,102,0.25); }   /* Sunnah Sports — emerald */
+  .theme-card.t4 { --theme-glow: rgba(196,77,44,0.28); }    /* Creativity — rust */
+  .theme-card.t5 { --theme-glow: rgba(59,81,128,0.30); }    /* Leadership — navy */
+  .theme-card.t6 { --theme-glow: rgba(125,211,252,0.25); }  /* Around the World — sky */
+  .theme-card.t7 { --theme-glow: rgba(132,204,22,0.22); }   /* Healthy — lime */
+
+  .themes-note {
+    margin-top: 36px;
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 15px; opacity: 0.65; color: var(--cream);
+    max-width: 640px;
+  }
+
+  /* ────────────────────────────────────────────────────────────────────── */
+  /*  ACTIVITIES BY AGE — 3 age groups + their activity menus               */
+  /* ────────────────────────────────────────────────────────────────────── */
+  .ages {
+    background: var(--night);
+    padding: 120px clamp(24px, 5vw, 80px) 110px;
+    position: relative; overflow: hidden;
+  }
+  .ages-head {
+    display: grid; gap: 28px; grid-template-columns: 1fr; margin-bottom: 60px; align-items: end;
+  }
+  @media (min-width: 1000px) { .ages-head { grid-template-columns: 1.3fr 1fr; } }
+  .ages-head h2 {
+    font-family: var(--font-serif); font-weight: 800;
+    font-size: clamp(48px, 9vw, 130px); line-height: 0.85;
+    letter-spacing: -0.05em; color: var(--cream); margin: 0;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+  }
+  .ages-head h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .ages-head p {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: clamp(17px, 1.7vw, 22px); opacity: 0.78; max-width: 460px; margin: 0;
+    line-height: 1.5; color: var(--cream);
+  }
+
+  .age-grid {
+    display: grid; gap: 4px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) { .age-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .age-card {
+    padding: 36px 32px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(247,239,220,0.02) 0%, rgba(247,239,220,0) 100%);
+    position: relative; overflow: hidden;
+    transition: all 0.5s var(--ease-quart);
+  }
+  .age-card:hover { transform: translateY(-4px); border-color: rgba(245,185,66,0.4); background: linear-gradient(180deg, rgba(245,185,66,0.05), rgba(247,239,220,0)); }
+  .age-card .age-tag {
+    display: inline-flex; align-items: baseline; gap: 4px;
+    font-family: var(--font-sans); font-size: 11px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .age-card h3 {
+    font-family: var(--font-serif); font-weight: 800;
+    font-size: clamp(56px, 6vw, 88px); line-height: 0.9; letter-spacing: -0.04em;
+    margin: 0 0 6px; color: var(--cream);
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+  }
+  .age-card h3 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .age-card .age-sub {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 17px; opacity: 0.75; margin: 0 0 24px;
+    color: var(--cream); line-height: 1.4;
+  }
+  .age-card ul {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .age-card li {
+    font-family: var(--font-body); font-size: 14px; color: var(--cream);
+    opacity: 0.82; padding-left: 18px; position: relative; line-height: 1.5;
+  }
+  .age-card li::before {
+    content: '◆'; position: absolute; left: 0; top: 1px;
+    color: var(--gold); font-size: 8px;
+  }
+  .age-card.featured { background: linear-gradient(180deg, rgba(245,185,66,0.05), rgba(247,239,220,0)); border-color: rgba(245,185,66,0.3); }
+  .age-card .age-foot {
+    margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line);
+    font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); opacity: 0.85;
+  }
+
+  /* ────────────────────────────────────────────────────────────────────── */
   /*  LOCATIONS REVEAL (3 mosques as full-bleed posters)                      */
   /* ────────────────────────────────────────────────────────────────────── */
   .locations {
@@ -841,9 +1118,11 @@
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
     <span>August <em>21</em></span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
-    <span><em>10</em>am — <em>3</em>pm</span>
+    <span><em>10</em>am — <em>2</em>pm</span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
-    <span>Ages <em>6</em>—<em>14</em></span>
+    <span><em>4</em> days a week</span>
+    <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
+    <span>Ages <em>4</em>—<em>15</em></span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
     <span><em>3</em> Edmonton mosques</span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
@@ -852,9 +1131,11 @@
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
     <span>August <em>21</em></span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
-    <span><em>10</em>am — <em>3</em>pm</span>
+    <span><em>10</em>am — <em>2</em>pm</span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
-    <span>Ages <em>6</em>—<em>14</em></span>
+    <span><em>4</em> days a week</span>
+    <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
+    <span>Ages <em>4</em>—<em>15</em></span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
     <span><em>3</em> Edmonton mosques</span>
     <svg class="star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6l10 28 30 2-23 19 8 30-25-17-25 17 8-30L10 36l30-2z" /></svg>
@@ -1029,6 +1310,223 @@
   </div>
 </section>
 
+<!-- ──────────────── A DAY AT THE CAMP ──────────────── -->
+<section class="day-schedule" id="schedule">
+  <div class="day-head">
+    <div class="reveal">
+      <p class="eyebrow" style="margin-bottom:18px">A day at the camp</p>
+      <h2>10 AM. Adhkar. <em>Then we begin.</em></h2>
+    </div>
+    <div class="reveal">
+      <p>The program opens with Qur'an and closes with Dhuhr prayer in jama'ah. In between — knowledge, movement, friendship, creativity. Every hour intentional.</p>
+      <div class="day-meta">
+        <span class="chip">10:00 AM — 2:00 PM</span>
+        <span class="chip">4 days a week</span>
+        <span class="chip">Mon → Thu</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-row reveal">
+      <div class="tl-time">10:00 — 10:20 AM</div>
+      <h3 class="tl-title">Arrival & <em>Morning Adhkar</em></h3>
+      <p class="tl-desc">Drop-off, the day's intention, and our morning adhkar together — a calm, grounded start that sets the tone.</p>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-time">10:20 — 11:00 AM</div>
+      <h3 class="tl-title">Qur'an <em>session</em></h3>
+      <p class="tl-desc">Recitation, memorization, tajweed. Small groups, qualified teachers, custom tracks for new readers and active huffadh.</p>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-time">11:00 — 11:15 AM</div>
+      <h3 class="tl-title">Snack & <em>short break</em></h3>
+      <p class="tl-desc">A quick snack and breath. Healthy options provided — fuel before the next halaqa.</p>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-time">11:15 — 11:45 AM</div>
+      <h3 class="tl-title">Islamic <em>studies</em></h3>
+      <p class="tl-desc">Seerah of the Prophet ﷺ, manners, the fiqh of worship, stories of the Prophets. Taught with stories that stick.</p>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-time">11:45 AM — 12:15 PM</div>
+      <h3 class="tl-title">Interactive <em>activity</em></h3>
+      <p class="tl-desc">Educational games tied to the day's lesson. Trivia, group challenges, role-plays — the lesson becomes play.</p>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-time">12:15 — 12:45 PM</div>
+      <h3 class="tl-title">Sports & <em>fun</em></h3>
+      <p class="tl-desc">Outdoor movement built into every day — rotated weekly so nobody gets bored. Age-appropriate games for every group.</p>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-time">12:45 — 1:15 PM</div>
+      <h3 class="tl-title">Creative <em>workshop</em></h3>
+      <p class="tl-desc">Arts, crafts, Arabic calligraphy, simple experiments. Every Friday a showcase — parents are invited.</p>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-time">1:15 — 1:35 PM</div>
+      <h3 class="tl-title">Review, competitions & <em>rewards</em></h3>
+      <p class="tl-desc">Recap of the day, friendly competitions, recognition for memorization, manners and effort.</p>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-time">1:35 — 2:00 PM</div>
+      <h3 class="tl-title">Dhuhr & <em>dismissal</em></h3>
+      <p class="tl-desc">Wudu, Dhuhr in jama'ah, closing du'a — and pickup. Prayer becomes a habit when it's the rhythm of your summer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── WEEKLY THEMES ──────────────── -->
+<section class="themes" id="themes">
+  <div class="themes-head">
+    <div class="reveal">
+      <p class="eyebrow" style="margin-bottom:18px">For ages 11 — 15 · A new theme every week</p>
+      <h2>Seven weeks. <em>Seven journeys.</em></h2>
+    </div>
+    <p class="reveal">Every week of the camp has its own theme that ties together the Qur'an lesson, the halaqa, the activity, and the field trip — so the whole experience moves in one direction.</p>
+  </div>
+
+  <div class="themes-grid">
+    <div class="theme-card t1 reveal">
+      <div>
+        <div class="theme-num">Week 01</div>
+        <div class="theme-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+      </div>
+      <div>
+        <h3 class="theme-name">Heroes of <em>Islam</em></h3>
+        <p class="theme-desc">The companions, the early heroes, the unsung — who they were, what they faced, and what we can carry forward.</p>
+      </div>
+    </div>
+
+    <div class="theme-card t2 reveal">
+      <div>
+        <div class="theme-num">Week 02</div>
+        <div class="theme-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      </div>
+      <div>
+        <h3 class="theme-name">Kindness <em>week</em></h3>
+        <p class="theme-desc">Adab in action. Words, gestures, listening, helping. Daily challenges to bring kindness home.</p>
+      </div>
+    </div>
+
+    <div class="theme-card t3 reveal">
+      <div>
+        <div class="theme-num">Week 03</div>
+        <div class="theme-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+      </div>
+      <div>
+        <h3 class="theme-name">Sunnah <em>Sports</em></h3>
+        <p class="theme-desc">Swimming, archery, horseback — the sports the Prophet ﷺ encouraged, reframed for an Edmonton summer.</p>
+      </div>
+    </div>
+
+    <div class="theme-card t4 reveal">
+      <div>
+        <div class="theme-num">Week 04</div>
+        <div class="theme-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+      </div>
+      <div>
+        <h3 class="theme-name">Creativity <em>week</em></h3>
+        <p class="theme-desc">Calligraphy, painting, photography, simple engineering. Build something, present it, take it home.</p>
+      </div>
+    </div>
+
+    <div class="theme-card t5 reveal">
+      <div>
+        <div class="theme-num">Week 05</div>
+        <div class="theme-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      </div>
+      <div>
+        <h3 class="theme-name">Leadership <em>week</em></h3>
+        <p class="theme-desc">How the Prophet ﷺ led. Public speaking, decision-making, leading a halaqa — each camper takes a turn.</p>
+      </div>
+    </div>
+
+    <div class="theme-card t6 reveal">
+      <div>
+        <div class="theme-num">Week 06</div>
+        <div class="theme-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+      </div>
+      <div>
+        <h3 class="theme-name">Around the <em>Muslim world</em></h3>
+        <p class="theme-desc">Andalusia, Mali, Indonesia, the Levant. Food, language, history — Muslim cultures around the globe.</p>
+      </div>
+    </div>
+
+    <div class="theme-card t7 reveal">
+      <div>
+        <div class="theme-num">Week 07</div>
+        <div class="theme-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/><path d="M8 12l3 3 5-5"/></svg></div>
+      </div>
+      <div>
+        <h3 class="theme-name">Healthy <em>Muslim</em></h3>
+        <p class="theme-desc">Nutrition, sleep, the body as an amanah. Cook together, move together, learn what the Prophet ﷺ taught about both.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="themes-note reveal">Themes apply to our older campers (ages 11–15). Younger groups follow the daily schedule with age-appropriate adaptations of the weekly theme.</p>
+</section>
+
+<!-- ──────────────── ACTIVITIES BY AGE ──────────────── -->
+<section class="ages" id="ages">
+  <div class="ages-head">
+    <div class="reveal">
+      <p class="eyebrow" style="margin-bottom:18px">Built for every age</p>
+      <h2>One camp. <em>Three age groups.</em></h2>
+    </div>
+    <p class="reveal">Every age gets their own version of the program — same values, same routine, age-appropriate everything. Halaqas, sports, and creative workshops are designed for where each child is right now.</p>
+  </div>
+
+  <div class="age-grid">
+    <div class="age-card reveal">
+      <div class="age-tag">Group 01 · Littles</div>
+      <h3><em>4</em>—<em>6</em></h3>
+      <p class="age-sub">Where the deen becomes their first language.</p>
+      <ul>
+        <li>Hula hoop & bubbles</li>
+        <li>Arts and crafts</li>
+        <li>Beading necklaces and bracelets</li>
+        <li>Short Qur'an sessions with songs</li>
+        <li>Story circle (Prophets & Sahaba for kids)</li>
+        <li>Wudu & prayer guided practice</li>
+      </ul>
+      <div class="age-foot">Pending confirmation · Inquire</div>
+    </div>
+
+    <div class="age-card featured reveal">
+      <div class="age-tag">Group 02 · Middles</div>
+      <h3><em>7</em>—<em>10</em></h3>
+      <p class="age-sub">The age of friendship and big games.</p>
+      <ul>
+        <li>Soccer</li>
+        <li>Relay races</li>
+        <li>Sack races</li>
+        <li>Water balloon games (hot days)</li>
+        <li>Dodgeball</li>
+        <li>Qur'an memorization tracks</li>
+        <li>Stories of the Prophets — full curriculum</li>
+      </ul>
+      <div class="age-foot">Confirmed · The heart of the camp</div>
+    </div>
+
+    <div class="age-card reveal">
+      <div class="age-tag">Group 03 · Olders</div>
+      <h3><em>11</em>—<em>15</em></h3>
+      <p class="age-sub">Where the program goes thematic.</p>
+      <ul>
+        <li>Seven themed weeks (Heroes, Kindness, Sunnah Sports, Creativity, Leadership, Around the World, Healthy Muslim)</li>
+        <li>Tajweed deep-dives & hifdh tracks</li>
+        <li>Seerah & adab halaqas</li>
+        <li>Public speaking & halaqa-leading practice</li>
+        <li>Creative workshops (calligraphy, photography, engineering)</li>
+        <li>Field trips tied to each week's theme</li>
+      </ul>
+      <div class="age-foot">Confirmed · The themed track</div>
+    </div>
+  </div>
+</section>
+
 <!-- ──────────────── LOCATIONS ──────────────── -->
 <section class="locations" id="locations">
   <div class="loc-intro">
@@ -1050,7 +1548,7 @@
         <div class="poster-wrap"><picture><source srcset="assets/posters/poster-syc.webp" type="image/webp"><img src="assets/posters/poster-syc.jpg" alt="Sahaba Youth Centre Summer Camp poster" loading="lazy" decoding="async" /></picture></div>
         <div class="meta">
           <h3>Sahaba <em>Youth</em> Centre</h3>
-          <p class="addr">Indoor court · library · lounge · ages 10–14</p>
+          <p class="addr">Indoor court · library · lounge · ages 4–15</p>
         </div>
       </article>
 
@@ -1059,7 +1557,7 @@
         <div class="poster-wrap"><picture><source srcset="assets/posters/poster-downtown.webp" type="image/webp"><img src="assets/posters/poster-downtown.jpg" alt="Downtown Sahaba Mosque Summer Camp poster" loading="lazy" decoding="async" /></picture></div>
         <div class="meta">
           <h3>Downtown <em>Sahaba</em> Mosque</h3>
-          <p class="addr">9216 — 105 Avenue, Edmonton · ages 6–14</p>
+          <p class="addr">9216 — 105 Avenue, Edmonton · ages 4–15</p>
         </div>
       </article>
 
@@ -1068,7 +1566,7 @@
         <div class="poster-wrap"><picture><source srcset="assets/posters/poster-alfaruq.webp" type="image/webp"><img src="assets/posters/poster-alfaruq.jpg" alt="Al-Faruq Islamic Centre Summer Camp poster" loading="lazy" decoding="async" /></picture></div>
         <div class="meta">
           <h3>Al-Faruq <em>Islamic</em> Centre</h3>
-          <p class="addr">4410 127 Street SW, Edmonton · ages 6–14</p>
+          <p class="addr">4410 127 Street SW, Edmonton · ages 4–15</p>
         </div>
       </article>
 
@@ -1269,7 +1767,7 @@ function bootSahaba() {
     });
 
     // Section reveals (general)
-    gsap.utils.toArray('.locations .reveal, .pricing .reveal, .cta-section .reveal').forEach((el) => {
+    gsap.utils.toArray('.day-schedule .reveal, .themes .reveal, .ages .reveal, .locations .reveal, .pricing .reveal, .cta-section .reveal').forEach((el) => {
       gsap.fromTo(el,
         { opacity: 0, y: 36 },
         { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out',
