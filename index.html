@@ -1046,6 +1046,160 @@
   .trust-row span::before { content: '✦ '; color: var(--gold); }
 
   /* ────────────────────────────────────────────────────────────────────── */
+  /*  REGISTRATION FORM                                                       */
+  /* ────────────────────────────────────────────────────────────────────── */
+  .register-form-section {
+    background: linear-gradient(180deg, #050810 0%, var(--night) 60%);
+    padding: clamp(80px, 11vw, 140px) clamp(20px, 5vw, 80px) clamp(80px, 10vw, 120px);
+    position: relative; overflow: hidden;
+  }
+  .register-form-section::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><g fill='none' stroke='%23f5b942' stroke-width='0.5' opacity='0.3'><polygon points='60,12 96,30 96,72 60,90 24,72 24,30'/></g></svg>");
+    background-size: 240px 240px; opacity: 0.06;
+  }
+  .rfs-wrap {
+    position: relative; z-index: 2;
+    max-width: 920px; margin: 0 auto;
+  }
+  .rfs-head { text-align: center; margin-bottom: 56px; }
+  .rfs-head h2 {
+    font-family: var(--font-serif); font-weight: 800;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 0.95; letter-spacing: -0.04em; margin: 0 0 16px;
+    color: var(--cream);
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+  }
+  .rfs-head h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .rfs-head p {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: clamp(16px, 1.7vw, 20px);
+    color: var(--cream); opacity: 0.78;
+    max-width: 560px; margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .rfs-form {
+    display: grid; gap: 22px;
+  }
+  .rfs-row {
+    display: grid; gap: 22px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 700px) { .rfs-row { grid-template-columns: repeat(2, 1fr); } }
+  .rfs-row-3 { grid-template-columns: 1fr; }
+  @media (min-width: 700px) { .rfs-row-3 { grid-template-columns: 1fr 1fr 1fr; } }
+
+  .rfs-field { display: flex; flex-direction: column; gap: 8px; }
+  .rfs-field label {
+    font-family: var(--font-sans); font-size: 11px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); opacity: 0.85; font-weight: 600;
+  }
+  .rfs-field label .req { color: var(--rust); margin-left: 4px; }
+  .rfs-field input, .rfs-field select, .rfs-field textarea {
+    font-family: var(--font-body); font-size: 16px;
+    background: rgba(247,239,220,0.04);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: var(--cream);
+    outline: none;
+    transition: border-color 0.3s var(--ease-quart), background 0.3s var(--ease-quart), box-shadow 0.3s var(--ease-quart);
+    font-weight: 500;
+    -webkit-appearance: none; appearance: none;
+  }
+  .rfs-field input:focus, .rfs-field select:focus, .rfs-field textarea:focus {
+    border-color: rgba(245,185,66,0.5);
+    background: rgba(245,185,66,0.04);
+    box-shadow: 0 0 0 4px rgba(245,185,66,0.08);
+  }
+  .rfs-field input::placeholder, .rfs-field textarea::placeholder { color: var(--cream); opacity: 0.35; }
+  .rfs-field textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
+  .rfs-field select { cursor: pointer; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23f5b942' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 42px; }
+  .rfs-field select option { background: var(--night); color: var(--cream); }
+
+  /* Location pill radios */
+  .rfs-locations {
+    display: grid; gap: 12px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 700px) { .rfs-locations { grid-template-columns: repeat(3, 1fr); } }
+  .rfs-loc-option {
+    position: relative; cursor: pointer;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px 14px 44px;
+    transition: all 0.3s var(--ease-quart);
+    color: var(--cream);
+    background: rgba(247,239,220,0.02);
+  }
+  .rfs-loc-option:hover { border-color: rgba(245,185,66,0.35); background: rgba(245,185,66,0.04); }
+  .rfs-loc-option input {
+    position: absolute; opacity: 0; pointer-events: none;
+  }
+  .rfs-loc-option .rfs-dot {
+    position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    width: 16px; height: 16px; border-radius: 999px;
+    border: 1px solid rgba(247,239,220,0.35);
+    transition: all 0.25s var(--ease-quart);
+  }
+  .rfs-loc-option input:checked ~ .rfs-dot {
+    border-color: var(--gold); background: radial-gradient(circle at center, var(--gold) 0 4px, transparent 5px);
+    box-shadow: 0 0 0 2px rgba(245,185,66,0.18);
+  }
+  .rfs-loc-option:has(input:checked) {
+    border-color: rgba(245,185,66,0.5);
+    background: rgba(245,185,66,0.07);
+  }
+  .rfs-loc-option strong {
+    display: block;
+    font-family: var(--font-sans); font-size: 13px;
+    letter-spacing: 0.04em; font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 2px;
+  }
+  .rfs-loc-option span {
+    display: block;
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 13px; opacity: 0.65;
+    color: var(--cream);
+  }
+
+  .rfs-submit-row {
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
+    margin-top: 12px; padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .rfs-submit {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 20px 36px; border-radius: 999px;
+    background: var(--gold); color: var(--night);
+    font-family: var(--font-sans); font-weight: 700; font-size: 13px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    border: none; cursor: pointer;
+    transition: background 0.4s var(--ease-quart), transform 0.3s var(--ease-quart);
+  }
+  .rfs-submit:hover { background: var(--cream); transform: translateY(-2px); }
+  .rfs-submit .arrow { width: 18px; height: 18px; transition: transform 0.4s var(--ease-quart); }
+  .rfs-submit:hover .arrow { transform: translateX(4px); }
+  .rfs-fallback {
+    font-family: var(--font-body); font-size: 13px; opacity: 0.65;
+    color: var(--cream); line-height: 1.5;
+  }
+  .rfs-fallback a { color: var(--gold); text-decoration: underline; text-decoration-color: rgba(245,185,66,0.4); }
+
+  .rfs-status {
+    margin-top: 24px; padding: 18px 22px; border-radius: 12px;
+    font-family: var(--font-serif); font-style: italic; font-size: 16px;
+    background: rgba(44,94,63,0.15); border: 1px solid rgba(74,139,102,0.35);
+    color: var(--cream);
+    display: none;
+  }
+  .rfs-status.show { display: block; }
+  .rfs-status em { color: var(--gold); font-style: italic; }
+
+  /* ────────────────────────────────────────────────────────────────────── */
   /*  FOOTER                                                                  */
   /* ────────────────────────────────────────────────────────────────────── */
   footer {
@@ -1618,8 +1772,8 @@
   <div class="cta-content">
     <h2 class="reveal">Reserve your <em>summer.</em></h2>
     <p class="arabic reveal">سجّل الآن — المقاعد محدودة</p>
-    <p class="sub reveal">Spots fill fast. Last year, all three locations were full by mid-May.<br />Register now to lock in your spot — and your sibling discount.</p>
-    <a href="tel:7807578800" class="magnetic-btn" id="magBtn">
+    <p class="sub reveal">Spots fill fast. Last year, all three locations were full by mid-May.<br />Fill out the form below to lock in your spot — and your sibling discount.</p>
+    <a href="#register-form" class="magnetic-btn" id="magBtn">
       Register now
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
@@ -1629,6 +1783,111 @@
       <span>Lunch included</span>
       <span>30-day refund</span>
     </div>
+  </div>
+</section>
+
+<!-- ──────────────── REGISTRATION FORM ──────────────── -->
+<section class="register-form-section" id="register-form">
+  <div class="rfs-wrap">
+    <div class="rfs-head reveal">
+      <h2>Sign up your <em>child.</em></h2>
+      <p>Fill in the details below. Submitting opens your email app with everything pre-filled — review and hit send, and we'll be in touch within 48 hours to confirm.</p>
+    </div>
+
+    <!-- The form uses mailto: as a no-backend default. To upgrade to Formspree
+         (free 50/mo), replace action="..." below with:
+           action="https://formspree.io/f/YOUR_FORM_ID"
+           method="POST"
+         …and remove the JS handler at the bottom. Or use Web3Forms / Google
+         Forms / your own API route — same idea. -->
+    <form class="rfs-form" id="registrationForm" novalidate>
+      <div class="rfs-row">
+        <div class="rfs-field">
+          <label for="rfs-parent">Parent / Guardian name <span class="req">*</span></label>
+          <input type="text" id="rfs-parent" name="parent" placeholder="Your full name" required />
+        </div>
+        <div class="rfs-field">
+          <label for="rfs-phone">Phone number <span class="req">*</span></label>
+          <input type="tel" id="rfs-phone" name="phone" placeholder="(780) 555-0123" required />
+        </div>
+      </div>
+
+      <div class="rfs-field">
+        <label for="rfs-email">Email address <span class="req">*</span></label>
+        <input type="email" id="rfs-email" name="email" placeholder="you@example.com" required />
+      </div>
+
+      <div class="rfs-row">
+        <div class="rfs-field">
+          <label for="rfs-count"># of children attending <span class="req">*</span></label>
+          <select id="rfs-count" name="count" required>
+            <option value="">Select…</option>
+            <option value="1">1 child</option>
+            <option value="2">2 children</option>
+            <option value="3">3 children</option>
+            <option value="4">4 children</option>
+            <option value="5+">5 or more</option>
+          </select>
+        </div>
+        <div class="rfs-field">
+          <label for="rfs-track">Age track <span class="req">*</span></label>
+          <select id="rfs-track" name="track" required>
+            <option value="">Select…</option>
+            <option value="Younger (7–10)">Younger campers (ages 7–10)</option>
+            <option value="Older (11–15)">Older campers (ages 11–15)</option>
+            <option value="Mixed (both)">Mixed — children in both age tracks</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="rfs-field">
+        <label for="rfs-kids">Children's names, ages, and any allergies <span class="req">*</span></label>
+        <textarea id="rfs-kids" name="kids" placeholder="Aisha — age 9 — peanut allergy&#10;Yusuf — age 12 — no allergies" required></textarea>
+      </div>
+
+      <div class="rfs-field">
+        <label>Preferred location <span class="req">*</span></label>
+        <div class="rfs-locations" role="radiogroup">
+          <label class="rfs-loc-option">
+            <input type="radio" name="location" value="Sahaba Youth Centre" required />
+            <span class="rfs-dot"></span>
+            <strong>Sahaba Youth Centre</strong>
+            <span>Indoor court · library · lounge</span>
+          </label>
+          <label class="rfs-loc-option">
+            <input type="radio" name="location" value="Downtown Sahaba Mosque" />
+            <span class="rfs-dot"></span>
+            <strong>Downtown Sahaba Mosque</strong>
+            <span>9216 — 105 Ave</span>
+          </label>
+          <label class="rfs-loc-option">
+            <input type="radio" name="location" value="Al-Faruq Islamic Centre" />
+            <span class="rfs-dot"></span>
+            <strong>Al-Faruq Islamic Centre</strong>
+            <span>4410 127 St SW</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="rfs-field">
+        <label for="rfs-notes">Anything else we should know? (optional)</label>
+        <textarea id="rfs-notes" name="notes" placeholder="Medical conditions, pickup arrangements, sibling discount questions, etc."></textarea>
+      </div>
+
+      <div class="rfs-submit-row">
+        <button type="submit" class="rfs-submit">
+          Send registration
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+        <p class="rfs-fallback">
+          Prefer to call or email? <a href="tel:7807578800">780&middot;757&middot;8800</a> · <a href="mailto:summercamp@sahabamosque.ca">summercamp@sahabamosque.ca</a>
+        </p>
+      </div>
+
+      <div class="rfs-status" id="rfsStatus">
+        Alhamdulillah — your <em>email app</em> just opened with your registration details pre-filled. Hit send and we'll confirm your spot within 48 hours, in shaa Allah.
+      </div>
+    </form>
   </div>
 </section>
 
@@ -1773,7 +2032,7 @@ function bootSahaba() {
     });
 
     // Section reveals (general)
-    gsap.utils.toArray('.day-schedule .reveal, .themes .reveal, .ages .reveal, .locations .reveal, .pricing .reveal, .cta-section .reveal').forEach((el) => {
+    gsap.utils.toArray('.day-schedule .reveal, .themes .reveal, .ages .reveal, .locations .reveal, .pricing .reveal, .cta-section .reveal, .register-form-section .reveal').forEach((el) => {
       gsap.fromTo(el,
         { opacity: 0, y: 36 },
         { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out',
@@ -1853,6 +2112,68 @@ function bootSahaba() {
     });
     mag.addEventListener('mouseleave', () => {
       gsap.to(mag, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.4)' });
+    });
+  }
+
+  /* ─── REGISTRATION FORM: serialize → mailto: ─── */
+  const form = document.getElementById('registrationForm');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Validate
+      if (!form.checkValidity()) {
+        // Find first invalid and focus it
+        const invalid = form.querySelector(':invalid');
+        if (invalid) {
+          invalid.focus();
+          invalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        form.reportValidity();
+        return;
+      }
+      const v = {
+        parent: form.parent.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim(),
+        count: form.count.value,
+        track: form.track.value,
+        kids: form.kids.value.trim(),
+        location: form.querySelector('input[name="location"]:checked')?.value || '',
+        notes: form.notes.value.trim()
+      };
+
+      const subject = `Sahaba Summer Camp 2026 — Registration: ${v.parent} (${v.count})`;
+      const body = [
+        `Salaam Alaikum,`,
+        ``,
+        `I'd like to register my child(ren) for the 4th Annual Sahaba Summer Camp 2026.`,
+        ``,
+        `— Parent / Guardian: ${v.parent}`,
+        `— Phone: ${v.phone}`,
+        `— Email: ${v.email}`,
+        `— Number of children: ${v.count}`,
+        `— Age track: ${v.track}`,
+        `— Preferred location: ${v.location}`,
+        ``,
+        `Children:`,
+        v.kids,
+        ``,
+        v.notes ? `Additional notes:\n${v.notes}` : '',
+        ``,
+        `Please confirm my spot and let me know the next steps.`,
+        ``,
+        `JazakAllah khair.`
+      ].filter(Boolean).join('\n');
+
+      const mailto = `mailto:summercamp@sahabamosque.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // Open user's email client
+      window.location.href = mailto;
+      // Show in-page confirmation
+      const status = document.getElementById('rfsStatus');
+      if (status) {
+        status.classList.add('show');
+        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     });
   }
 }
