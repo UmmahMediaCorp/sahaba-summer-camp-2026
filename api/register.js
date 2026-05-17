@@ -69,7 +69,7 @@ export default async function handler(req, res) {
       const err = await r.text();
       console.error('Airtable error:', r.status, err);
       // Don't leak Airtable internals to the client
-      return res.status(502).json({ ok: false, error: 'Could not save your registration. Please try again, or email summercamp@sahabamosque.ca directly.' });
+      return res.status(502).json({ ok: false, error: 'Could not save your registration. Please try again, or email youth@sahabamosque.com directly.' });
     }
 
     return res.status(200).json({ ok: true });
