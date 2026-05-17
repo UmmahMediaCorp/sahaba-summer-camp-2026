@@ -1192,12 +1192,14 @@
   .rfs-status {
     margin-top: 24px; padding: 18px 22px; border-radius: 12px;
     font-family: var(--font-serif); font-style: italic; font-size: 16px;
+    color: var(--cream); line-height: 1.5;
     background: rgba(44,94,63,0.15); border: 1px solid rgba(74,139,102,0.35);
-    color: var(--cream);
     display: none;
   }
   .rfs-status.show { display: block; }
+  .rfs-status[data-kind="error"] { background: rgba(196,77,44,0.12); border-color: rgba(196,77,44,0.4); }
   .rfs-status em { color: var(--gold); font-style: italic; }
+  .rfs-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
   /* ────────────────────────────────────────────────────────────────────── */
   /*  FOOTER                                                                  */
@@ -2115,33 +2117,21 @@ function bootSahaba() {
     });
   }
 
-  /* ─── REGISTRATION FORM: serialize → mailto: ─── */
+  /* ─── REGISTRATION FORM: POST to Airtable via /api/register ─── */
   const form = document.getElementById('registrationForm');
   if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // Validate
-      if (!form.checkValidity()) {
-        // Find first invalid and focus it
-        const invalid = form.querySelector(':invalid');
-        if (invalid) {
-          invalid.focus();
-          invalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        form.reportValidity();
-        return;
-      }
-      const v = {
-        parent: form.parent.value.trim(),
-        phone: form.phone.value.trim(),
-        email: form.email.value.trim(),
-        count: form.count.value,
-        track: form.track.value,
-        kids: form.kids.value.trim(),
-        location: form.querySelector('input[name="location"]:checked')?.value || '',
-        notes: form.notes.value.trim()
-      };
+    const submitBtn = form.querySelector('.rfs-submit');
+    const status = document.getElementById('rfsStatus');
 
+    function showStatus(html, kind) {
+      if (!status) return;
+      status.innerHTML = html;
+      status.dataset.kind = kind || 'success';
+      status.classList.add('show');
+      status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function mailtoFallback(v) {
       const subject = `Sahaba Summer Camp 2026 — Registration: ${v.parent} (${v.count})`;
       const body = [
         `Salaam Alaikum,`,
@@ -2160,19 +2150,74 @@ function bootSahaba() {
         ``,
         v.notes ? `Additional notes:\n${v.notes}` : '',
         ``,
-        `Please confirm my spot and let me know the next steps.`,
-        ``,
         `JazakAllah khair.`
       ].filter(Boolean).join('\n');
+      return `mailto:summercamp@sahabamosque.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
 
-      const mailto = `mailto:summercamp@sahabamosque.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      // Open user's email client
-      window.location.href = mailto;
-      // Show in-page confirmation
-      const status = document.getElementById('rfsStatus');
-      if (status) {
-        status.classList.add('show');
-        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        const invalid = form.querySelector(':invalid');
+        if (invalid) {
+          invalid.focus();
+          invalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        form.reportValidity();
+        return;
+      }
+
+      const v = {
+        parent: form.parent.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim(),
+        count: form.count.value,
+        track: form.track.value,
+        kids: form.kids.value.trim(),
+        location: form.querySelector('input[name="location"]:checked')?.value || '',
+        notes: form.notes.value.trim()
+      };
+
+      // UI: disable button + show loading
+      const originalBtnHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending…';
+
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(v)
+        });
+        const j = await res.json().catch(() => ({}));
+        if (res.ok && j.ok) {
+          showStatus(
+            `Alhamdulillah — your registration is <em>in</em>. We'll be in touch within 48 hours, in shaa Allah. JazakAllah khair.`,
+            'success'
+          );
+          form.reset();
+          submitBtn.innerHTML = '✓ Registered';
+          submitBtn.style.background = 'var(--emerald-glow, var(--emerald))';
+          submitBtn.style.color = 'var(--cream)';
+        } else {
+          // Backend rejected — gracefully fall back to mailto
+          const link = mailtoFallback(v);
+          showStatus(
+            `Something went wrong saving your form. <a href="${link}" style="color:var(--gold);text-decoration:underline">Click here to send it as an email instead</a>, or call 780·757·8800.`,
+            'error'
+          );
+          submitBtn.innerHTML = originalBtnHTML;
+          submitBtn.disabled = false;
+        }
+      } catch (err) {
+        // Network failure — same fallback
+        const link = mailtoFallback(v);
+        showStatus(
+          `Couldn't reach our servers. <a href="${link}" style="color:var(--gold);text-decoration:underline">Click here to send your registration as an email</a>, or call 780·757·8800.`,
+          'error'
+        );
+        submitBtn.innerHTML = originalBtnHTML;
+        submitBtn.disabled = false;
       }
     });
   }
