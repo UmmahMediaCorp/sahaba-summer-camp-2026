@@ -388,7 +388,11 @@
   .chapter-stage::after {
     content: ''; position: absolute; inset: 0;
     background:
-      linear-gradient(180deg, rgba(10,13,20,0.5) 0%, rgba(10,13,20,0.15) 30%, rgba(10,13,20,0.85) 100%);
+      linear-gradient(180deg,
+        rgba(10,13,20,0.55) 0%,
+        rgba(10,13,20,0.18) 28%,
+        rgba(10,13,20,0.55) 58%,
+        rgba(10,13,20,0.95) 100%);
     z-index: 3;
     pointer-events: none;
   }
@@ -455,9 +459,19 @@
   }
   @media (min-width: 900px) { .chapter-bottom { grid-template-columns: 1.4fr 1fr; gap: 60px; } }
 
-  .chapter-meta { font-family: var(--font-serif); font-style: italic; font-size: clamp(20px, 2vw, 26px); color: var(--cream); margin: 0; opacity: 0.9; }
+  .chapter-meta {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: clamp(20px, 2vw, 26px); color: var(--cream); margin: 0;
+    opacity: 1;
+    text-shadow: 0 2px 12px rgba(10,13,20,0.65);
+  }
   .chapter-meta em { color: var(--gold); font-style: italic; }
-  .chapter-desc { font-size: 14px; line-height: 1.5; opacity: 0.75; max-width: 360px; margin: 0; font-family: var(--font-body); }
+  .chapter-desc {
+    font-size: 14px; line-height: 1.5; opacity: 0.92;
+    max-width: 360px; margin: 0; font-family: var(--font-body);
+    color: var(--cream);
+    text-shadow: 0 2px 10px rgba(10,13,20,0.7);
+  }
 
   .chapter-side {
     position: absolute;
@@ -1463,8 +1477,8 @@
         </div>
         <h2 class="chapter-title">Make something <em>beautiful.</em></h2>
         <div class="chapter-bottom">
-          <p class="chapter-meta">Arabic calligraphy. Painting. Robotics. Photography. <em>Every Friday a showcase</em> — parents are invited.</p>
-          <p class="chapter-desc">The arts have always been a Muslim tradition. We honour that with intentional creative time built into every day, and dedicated workshops once a week.</p>
+          <p class="chapter-meta">Arts and crafts — <em>built into every day.</em></p>
+          <p class="chapter-desc">Time set aside each day for kids to slow down, make something with their hands, and take it home.</p>
         </div>
       </div>
     </div>
