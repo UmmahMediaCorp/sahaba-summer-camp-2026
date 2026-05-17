@@ -1118,6 +1118,11 @@
   .rfs-field textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
   .rfs-field select { cursor: pointer; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23f5b942' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 42px; }
   .rfs-field select option { background: var(--night); color: var(--cream); }
+  .rfs-hint {
+    font-size: 12.5px; line-height: 1.5;
+    color: rgba(247,239,220,0.55);
+    margin: 4px 0 0; letter-spacing: 0.01em;
+  }
 
   /* Location pill radios */
   .rfs-locations {
@@ -1843,6 +1848,18 @@
       </div>
 
       <div class="rfs-field">
+        <label for="rfs-arabic">Can your child(ren) read Arabic? <span class="req">*</span></label>
+        <select id="rfs-arabic" name="arabic" required>
+          <option value="">Select…</option>
+          <option value="Fluent — reads Qur'an confidently">Yes — reads Qur'an confidently</option>
+          <option value="Some — beginner / reads with help">Some — beginner / reads with help</option>
+          <option value="Not yet — will start from basics">Not yet — will start from basics</option>
+          <option value="Mixed — varies across children">Mixed — varies across children</option>
+        </select>
+        <p class="rfs-hint">So we can place each child in the right Qur'an track from day one.</p>
+      </div>
+
+      <div class="rfs-field">
         <label for="rfs-kids">Children's names, ages, and any allergies <span class="req">*</span></label>
         <textarea id="rfs-kids" name="kids" placeholder="Aisha — age 9 — peanut allergy&#10;Yusuf — age 12 — no allergies" required></textarea>
       </div>
@@ -2143,6 +2160,7 @@ function bootSahaba() {
         `— Email: ${v.email}`,
         `— Number of children: ${v.count}`,
         `— Age track: ${v.track}`,
+        `— Arabic reading level: ${v.arabic}`,
         `— Preferred location: ${v.location}`,
         ``,
         `Children:`,
@@ -2173,6 +2191,7 @@ function bootSahaba() {
         email: form.email.value.trim(),
         count: form.count.value,
         track: form.track.value,
+        arabic: form.arabic.value,
         kids: form.kids.value.trim(),
         location: form.querySelector('input[name="location"]:checked')?.value || '',
         notes: form.notes.value.trim()

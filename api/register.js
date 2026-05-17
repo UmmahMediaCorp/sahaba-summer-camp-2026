@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   const data = req.body || {};
 
   // Server-side validation (mirrors the HTML5 required attributes)
-  const required = ['parent', 'phone', 'email', 'count', 'track', 'kids', 'location'];
+  const required = ['parent', 'phone', 'email', 'count', 'track', 'kids', 'location', 'arabic'];
   for (const k of required) {
     if (!data[k] || String(data[k]).trim() === '') {
       return res.status(400).json({ ok: false, error: `Missing required field: ${k}` });
@@ -43,6 +43,7 @@ export default async function handler(req, res) {
     'Email': String(data.email).trim(),
     'Number of Children': String(data.count).trim(),
     'Age Track': String(data.track).trim(),
+    'Arabic Reading Level': String(data.arabic).trim(),
     'Children Details': String(data.kids).trim(),
     'Preferred Location': String(data.location).trim(),
     'Notes': String(data.notes || '').trim(),
